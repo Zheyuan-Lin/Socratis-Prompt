@@ -2,7 +2,11 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, run the development server:
+First, install relevant packages
+
+npm install socket.io-client @types/socket.io-client
+
+then, run the development server:
 
 ```bash
 npm run dev
