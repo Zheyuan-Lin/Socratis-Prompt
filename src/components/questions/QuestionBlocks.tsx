@@ -16,6 +16,7 @@ export default function QuestionBlocks() {
   const [editValue, setEditValue] = useState<string>("")
   const [shouldAnimate, setShouldAnimate] = useState<boolean>(false)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
+  const [isSending, setIsSending] = useState<boolean>(false)
   
   // Use our external socket hook
   const { isConnected, sendExternalMessage } = useExternalSocket()
@@ -46,16 +47,18 @@ export default function QuestionBlocks() {
   }
 
   // Handle send button click
-  const handleSend = () => {
+  const handleSend = async () => {
     if (selectedIndex !== null) {
       if (!isConnected) {
         setErrorMessage("Cannot send: Socket not connected. Please refresh the page.")
         return
       }
       
+      setIsSending(true)
       const questionToSend = questions[selectedIndex].question
-      alert("Sending question:" + questionToSend)
-      sendExternalMessage(questionToSend)
+      await sendExternalMessage(questionToSend)
+      setIsSending(false)
+      alert("Sent question:" + questionToSend)
     } else {
       setErrorMessage('Please select a question first')
     }
@@ -149,10 +152,18 @@ export default function QuestionBlocks() {
           <Button
             size="lg"
             onClick={handleSend}
-            disabled={selectedIndex === null || editingIndex !== null || !isConnected}
-            className="text-lg font-medium from-blue-400 to-indigo-400 shadow-md hover:shadow-lg transition-all duration-300 text-white"
+            disabled={selectedIndex === null || editingIndex !== null || !isConnected || isSending}
+            className={`text-lg font-medium from-blue-400 to-indigo-400 shadow-md hover:shadow-lg transition-all duration-300 text-white
+              ${isSending ? 'animate-pulse' : ''}`}
           >
-            Send Prompts
+            {isSending ? (
+              <span className="flex items-center gap-2">
+                <span className="animate-spin">⏳</span>
+                Sending...
+              </span>
+            ) : (
+              'Send Prompts'
+            )}
           </Button>
         </div>
       </div>
