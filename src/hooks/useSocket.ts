@@ -1,18 +1,24 @@
 import { useEffect, useState } from "react";
 import io from "socket.io-client";
-export function useExternalSocket(url = "http://localhost:3000") {
+export function useExternalSocket(url = "https://socraticvis-ef6d7764216f.herokuapp.com") {
   const [socket, setSocket] = useState<SocketIOClient.Socket | null>(null);
   const [isConnected, setIsConnected] = useState(false);
   useEffect(() => {
     const socketInstance = io(url, {
-      transports: ['websocket'],
+      transports: ['websocket', 'polling'],
       reconnection: true,
       reconnectionAttempts: 5,
-      reconnectionDelay: 1000
+      reconnectionDelay: 1000,
+      secure: true,
+      rejectUnauthorized: false
     });
     socketInstance.on("connect", () => {
-      console.log("Connected to socket server");
+      console.log("Connected to Heroku socket server");
       setIsConnected(true);
+    });
+    socketInstance.on("connect_error", (error) => {
+      console.error("Connection error:", error);
+      setIsConnected(false);
     });
     socketInstance.on("disconnect", () => {
       console.log("Disconnected from socket server");

@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Socratis prompts",
+  title: "Socratic prompts",
   description: "Please choose one of the following category",
 };
 

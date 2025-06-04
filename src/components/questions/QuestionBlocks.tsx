@@ -81,7 +81,7 @@ export default function QuestionBlocks() {
       <div className="max-w-7xl mx-auto relative z-10 py-8 md:py-12">
         <div className="text-center mb-12">
           <h1 className="text-5xl md:text-6xl font-extrabold text-center text-gray-800">
-            Socratis Prompts
+            Socratic Prompts
           </h1>
           <p className="text-slate-600 mt-4 text-lg">
             Please choose from the following category
@@ -109,7 +109,7 @@ export default function QuestionBlocks() {
             <div
               key={index}
               className={`relative transition-all duration-300 ${
-                selectedIndex === index ? "border-2 border-blue-500 rounded-lg" : ""
+                selectedIndex === index ? "border-5 border-blue-500 rounded-lg" : ""
               }`}
               onClick={() => handleBlockClick(index)}
             >
