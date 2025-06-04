@@ -51,6 +51,7 @@ export function useExternalSocket(url = "https://socraticvis-ef6d7764216f.heroku
 
   return { 
     isConnected, 
-    sendExternalMessage
+    sendExternalMessage,
+    disconnect
   };
 }

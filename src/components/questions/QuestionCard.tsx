@@ -1,4 +1,4 @@
-import { ReactNode } from "react"
+import { type FC } from 'react'
 import { Card, CardContent } from "@/components/ui/card"
 import { Question } from "./types"
 import { EditableQuestion } from "./EditableQuestion"

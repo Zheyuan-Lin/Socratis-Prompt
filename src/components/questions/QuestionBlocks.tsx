@@ -14,7 +14,6 @@ export default function QuestionBlocks() {
   const [editingIndex, setEditingIndex] = useState<number | null>(null)
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
   const [editValue, setEditValue] = useState<string>("")
-  const [shouldAnimate, setShouldAnimate] = useState<boolean>(false)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const [isSending, setIsSending] = useState<boolean>(false)
   
@@ -24,7 +23,6 @@ export default function QuestionBlocks() {
   // Handle block selection
   const handleBlockClick = (index: number) => {
     setSelectedIndex(index)
-    setShouldAnimate(true)
     setErrorMessage(null)
   }
 
