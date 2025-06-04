@@ -1,2 +1,2 @@
 // Export all hooks
-export { useSocket } from './useSocket';
+export { useSocket as useSocket } from './useSocket';

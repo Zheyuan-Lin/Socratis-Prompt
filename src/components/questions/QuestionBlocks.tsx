@@ -7,7 +7,7 @@ import { BackgroundDecoration } from "./BackgroundDecoration"
 import { defaultQuestions } from "@/lib/constants/defaultQuestions"
 import { Question } from "./types"
 import { Pencil, Check, AlertCircle } from "lucide-react"
-import { useExternalSocket } from "@/hooks/useSocket"
+import { useSocket } from "@/hooks/useSocket"
 
 export default function QuestionBlocks() {
   const [questions, setQuestions] = useState<Question[]>(defaultQuestions)
@@ -18,7 +18,7 @@ export default function QuestionBlocks() {
   const [isSending, setIsSending] = useState<boolean>(false)
   
   // Use our external socket hook
-  const { isConnected, sendExternalMessage } = useExternalSocket()
+  const { isConnected, sendExternalMessage } = useSocket()
 
   // Handle block selection
   const handleBlockClick = (index: number) => {
