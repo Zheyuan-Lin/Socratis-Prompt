@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import io from "socket.io-client";
-export function useSocket(url = "https://socraticvis-ef6d7764216f.herokuapp.com") {
+export function useSocket(url = "https://socratic-prompt-d70074f075c9.herokuapp.com/") {
   const [socket, setSocket] = useState<SocketIOClient.Socket | null>(null);
   const [isConnected, setIsConnected] = useState(false);
   useEffect(() => {
